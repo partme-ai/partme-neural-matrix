@@ -1,0 +1,16 @@
+PASS High-detail 640-node graph {'nodes': 640, 'edges': 3150, 'filaments': 620, 'dust': 1260, 'streams': 710, 'packets': 680}
+PASS 40s showcase autoplay 1.1099999999999999
+PASS Corporate navy + icy-blue tokens {'bg': 'rgb(3, 14, 32)', 'accent': '#73d2ff'}
+PASS Central rotating ring moves both ways {'delta': 0.6283185307179586, 'reverse': True}
+PASS Timebar advances automatically 
+PASS Runtime scene responds to timeline 
+PASS Live 40s seamless time wrap {'showTime': 0.306699999999999, 'loops': 1}
+PASS AMBIENT is default music {'enabled': False, 'score': 'ambient', 'paused': True, 'position': 0, 'volume': 0.71}
+PASS AMBIENT audio plays after gesture {'enabled': True, 'score': 'ambient', 'paused': False, 'position': 1.225455, 'volume': 0.71}
+PASS Switches to PULSE without stopping {'enabled': True, 'score': 'pulse', 'paused': False, 'position': 2.492457, 'volume': 0.84}
+PASS Switch back to AMBIENT {'enabled': True, 'score': 'ambient', 'paused': False, 'position': 3.480821, 'volume': 0.71}
+PASS Mute sound 
+PASS No JavaScript exceptions []
+PASS Mobile 390px / Lite quality / no horizontal overflow {'width': 390, 'scrollWidth': 390, 'quality': 'lite'}
+PASS No mobile JS exceptions []
+TOTAL 15 / 15

@@ -1,0 +1,126 @@
+{
+  "total": 15,
+  "passed": 15,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "High-detail 640-node graph",
+      "passed": true,
+      "detail": {
+        "nodes": 640,
+        "edges": 3150,
+        "filaments": 620,
+        "dust": 1260,
+        "streams": 710,
+        "packets": 680
+      }
+    },
+    {
+      "name": "40s showcase autoplay",
+      "passed": true,
+      "detail": 1.1099999999999999
+    },
+    {
+      "name": "Corporate navy + icy-blue tokens",
+      "passed": true,
+      "detail": {
+        "bg": "rgb(3, 14, 32)",
+        "accent": "#73d2ff"
+      }
+    },
+    {
+      "name": "Central rotating ring moves both ways",
+      "passed": true,
+      "detail": {
+        "delta": 0.6283185307179586,
+        "reverse": true
+      }
+    },
+    {
+      "name": "Timebar advances automatically",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Runtime scene responds to timeline",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Live 40s seamless time wrap",
+      "passed": true,
+      "detail": {
+        "showTime": 0.306699999999999,
+        "loops": 1
+      }
+    },
+    {
+      "name": "AMBIENT is default music",
+      "passed": true,
+      "detail": {
+        "enabled": false,
+        "score": "ambient",
+        "paused": true,
+        "position": 0,
+        "volume": 0.71
+      }
+    },
+    {
+      "name": "AMBIENT audio plays after gesture",
+      "passed": true,
+      "detail": {
+        "enabled": true,
+        "score": "ambient",
+        "paused": false,
+        "position": 1.225455,
+        "volume": 0.71
+      }
+    },
+    {
+      "name": "Switches to PULSE without stopping",
+      "passed": true,
+      "detail": {
+        "enabled": true,
+        "score": "pulse",
+        "paused": false,
+        "position": 2.492457,
+        "volume": 0.84
+      }
+    },
+    {
+      "name": "Switch back to AMBIENT",
+      "passed": true,
+      "detail": {
+        "enabled": true,
+        "score": "ambient",
+        "paused": false,
+        "position": 3.480821,
+        "volume": 0.71
+      }
+    },
+    {
+      "name": "Mute sound",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "No JavaScript exceptions",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "Mobile 390px / Lite quality / no horizontal overflow",
+      "passed": true,
+      "detail": {
+        "width": 390,
+        "scrollWidth": 390,
+        "quality": "lite"
+      }
+    },
+    {
+      "name": "No mobile JS exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ]
+}

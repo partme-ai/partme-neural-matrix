@@ -1,0 +1,8 @@
+﻿# Generated / temporary files
+media/.incoming/
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.venv/
+node_modules/

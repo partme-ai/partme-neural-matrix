@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#030e20" />
+  <meta name="description" content="Partme Neural Matrix — Agent Fabric 可交互可视化运行空间，离线可运行的概念演示。" />
+  <title>PARTME — Neural Matrix V3 · Enterprise Blue</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="brand-copy"><strong>PARTME<span class="brand-dot">.</span></strong><small>AGENT FABRIC</small></div>
+      </div>
+      <div class="topbar-divider"></div>
+      <div class="topbar-title"><span class="muted-label">VISUAL RUNTIME</span><span class="header-slash"> / </span><strong>NEURAL MATRIX</strong><span class="release-tag">SHOWCASE V3.0 · BLUE</span></div>
+      <nav class="mode-nav" aria-label="可视化场景">
+        <button class="mode-button active" data-mode="mission" aria-pressed="true"><span class="nav-index">01</span> MISSION CONTROL</button>
+        <button class="mode-button" data-mode="knowledge" aria-pressed="false"><span class="nav-index">02</span> KNOWLEDGE GALAXY</button>
+        <button class="mode-button" data-mode="runtime" aria-pressed="false"><span class="nav-index">03</span> RUNTIME GRAPH</button>
+      </nav>
+      <div class="top-status"><span class="status-pulse"></span> SIMULATION <span class="status-divide">|</span> <span id="headerClock">00:00:00</span></div>
+    </header>
+
+    <section class="visual-stage" id="visualStage" aria-label="可交互神经网络与智能体协作轨道">
+      <canvas id="matrixCanvas" aria-label="神经网络矩阵动画，请拖动旋转、滚轮缩放、点击节点查看详情"></canvas>
+      <div class="visual-grain" aria-hidden="true"></div>
+      <div class="corner corner-tl" aria-hidden="true"></div><div class="corner corner-tr" aria-hidden="true"></div>
+      <div class="corner corner-bl" aria-hidden="true"></div><div class="corner corner-br" aria-hidden="true"></div>
+
+      <div class="scene-heading">
+        <div class="tiny-caps accent"><span class="tiny-cross">✳</span> OBSERVABILITY ENGINE <span class="heading-line"></span> 001</div>
+        <h1>NEURAL<span class="outline-word">/</span>MATRIX</h1>
+        <p class="scene-subtitle">智能体的每一次协作，都有迹可循。 <span>EVERY EVENT. EVERY CONNECTION.</span></p>
+      </div>
+
+      <div class="side-frequency" aria-hidden="true"><span>FLUX VECTOR // 00<span id="frequencyNumber">7</span></span><i></i><span>PARTME • 2026</span></div>
+
+      <aside class="left-readout" aria-label="视觉状态读数">
+        <div class="side-module">
+          <div class="side-module-label">SYSTEM TOPOLOGY <span>LIVE</span></div>
+          <div class="big-indicator" id="nodeCount">192<span> NODES</span></div>
+          <div class="mini-bars" id="miniBars" aria-hidden="true"></div>
+          <div class="side-module-foot">LINK DENSITY <span id="linkDensity">0.82</span></div>
+        </div>
+        <div class="side-module side-module-secondary">
+          <div class="side-module-label">ENERGY DISTRIBUTION</div>
+          <div class="frequency-graph" id="frequencyGraph" aria-hidden="true"></div>
+          <div class="side-module-foot">LAYER / 04 <span>ACTIVE</span></div>
+        </div>
+      </aside>
+
+      <div class="orbit-center-target" id="centerTarget" aria-hidden="true"><span class="target-dot"></span></div>
+      <div class="matrix-data-strip" aria-label="矩阵模拟数据统计">
+        <span>CHANNELS <strong id="linksCount">3150</strong></span>
+        <span>PHOTONS <strong id="flowCount">680</strong></span>
+        <span>STREAMS <strong id="activeStreams">710</strong></span>
+        <span>LOOPS <strong id="loopCount">00</strong></span>
+      </div>
+
+      <aside class="mission-panel glass-panel" aria-label="当前模拟任务">
+        <div class="panel-cap"><span class="mini-square"></span><span id="panelEyebrow">ACTIVE SCENARIO / 001</span><span class="panel-cap-right">●●●</span></div>
+        <div class="panel-title-row"><div><p class="card-eyebrow">OPERATION IN PROGRESS</p><h2 id="scenarioTitle">MULTI-AGENT ORCHESTRATION</h2></div><span class="hex-badge">A/01</span></div>
+        <div class="mission-divider"></div>
+        <div class="task-label">TASK INSTRUCTION <span>EDITABLE</span></div>
+        <form id="taskForm" class="task-form">
+          <input id="taskInput" spellcheck="false" maxlength="120" aria-label="模拟任务内容" value="分析需求 → 拆解任务 → 多 Agent 协作交付" />
+          <button type="submit" class="task-submit" title="启动任务" aria-label="启动任务">↗</button>
+        </form>
+        <div class="stage-info"><span class="stage-info-label">CURRENT PHASE</span><span id="phaseCode">03 / 08</span></div>
+        <div class="phase-name" id="phaseName">TASK DECOMPOSITION</div>
+        <div class="progress-track"><div id="missionProgress" class="progress-fill"></div><span class="progress-tick" style="left:25%"></span><span class="progress-tick" style="left:50%"></span><span class="progress-tick" style="left:75%"></span></div>
+        <div class="progress-meta"><span id="progressPercent">37.8%</span><span id="progressStatus">RUNNING / SIMULATED</span></div>
+        <div class="agent-chips" id="agentChips"></div>
+        <div class="mission-panel-footer"><span class="blinking-led"></span><span id="signalText">AGENT HANDOFF CHANNEL READY</span><span class="small-mono">TRC-00<span id="traceCounter">48</span></span></div>
+      </aside>
+
+      <div class="radial-callout radial-callout-left"><i></i><span>NEURAL LINKS<br /><em id="connectionReadout">00824</em></span></div>
+      <div class="radial-callout radial-callout-right"><i></i><span>EVENT STREAM<br /><em id="eventReadout">027.04 / S</em></span></div>
+
+      <div class="stage-bottom-bar">
+        <div class="bottom-coordinate"><span class="reticle-small">⊕</span> MATRIX / GLOBAL <span class="coords-spacer"></span> X<span id="axisX">+023.7</span> Y<span id="axisY">-016.2</span> Z<span id="axisZ">+008.4</span></div>
+        <div class="scene-controls">
+          <button id="showcaseBtn" class="ctrl-btn ctrl-showcase active" aria-pressed="true" title="切换回自动循环演示">◉ SHOWCASE / 40S</button>
+          <button id="pauseBtn" class="ctrl-btn ctrl-play" title="暂停 / 继续" aria-label="暂停或继续播放"><span id="pauseIcon">Ⅱ</span><span id="pauseText">PAUSE</span></button>
+          <button id="replayBtn" class="ctrl-btn" title="重新播放" aria-label="重新播放">↺ <span>REPLAY</span></button>
+          <button id="speedBtn" class="ctrl-btn ctrl-speed" title="切换播放速度" aria-label="切换播放速度">1.0×</button>
+          <button id="qualityBtn" class="ctrl-btn ctrl-quality" title="High / Balanced / Lite 性能档位">QUALITY / HIGH</button>
+          <button id="audioBtn" class="ctrl-btn ctrl-audio" title="点击开启或关闭企业科技电子氛围音乐" aria-label="开启背景音乐" aria-pressed="false">♫ SOUND OFF</button>
+          <button id="audioStyleBtn" class="ctrl-btn ctrl-audio-style" title="切换背景音乐：企业氛围 / 未来脉冲">♬ AMBIENT</button>
+          <div class="ctrl-divider"></div>
+          <span class="controller-hint">↔ DRAG TO ORBIT <span>·</span> SCROLL TO ZOOM</span>
+        </div>
+        <button class="fullscreen-btn" id="fullscreenBtn" title="全屏展示" aria-label="全屏展示">⛶</button>
+      </div>
+    </section>
+
+    <section class="timeline-section" aria-label="场景事件时间轴">
+      <span class="timeline-caption" id="timelineCaption">SHOWCASE / 40S</span><span class="timeline-time" id="timeReadout">00:00</span>
+      <input type="range" class="timeline-range" id="timeline" min="0" max="1000" step="1" value="0" aria-label="40 秒循环演示与事件回放时间轴" />
+      <span class="timeline-time timeline-end" id="timeEnd">00:40</span><span class="timeline-stamp">SIMULATED EVENT TRACE <span class="squa">▦</span></span>
+    </section>
+
+    <section class="telemetry-area" aria-label="实时模拟遥测面板">
+      <article class="telemetry-panel terminal-panel">
+        <header class="telemetry-head"><span><i class="panel-index">01</i> AGENT EVENT LOG</span><span class="telemetry-live"><i></i>STREAMING</span></header>
+        <div id="eventLog" class="event-log" aria-live="off"></div>
+        <footer class="telemetry-footer">TRACE LEVEL <strong>DEBUG</strong><span> / </span> BATCH <strong>0052</strong><span class="footer-end">▼ AUTO</span></footer>
+      </article>
+      <article class="telemetry-panel agent-panel">
+        <header class="telemetry-head"><span><i class="panel-index">02</i> EXECUTION GRAPH</span><span class="telemetry-head-sub">ACTIVE AGENTS <em id="agentsActive">04/06</em></span></header>
+        <div class="agent-status-list" id="agentStatusList"></div>
+        <footer class="telemetry-footer">ORCHESTRATOR <strong id="orchestratorStatus">SYNCHRONIZED</strong><span class="footer-end">↗ +02</span></footer>
+      </article>
+      <article class="telemetry-panel chart-panel">
+        <header class="telemetry-head"><span><i class="panel-index">03</i> SIGNAL ANALYTICS</span><span class="telemetry-head-sub">60S WINDOW</span></header>
+        <div class="metric-row">
+          <div><div class="metric-label">TOKEN THROUGHPUT</div><div class="metric-figure" id="tokenRate">1,284 <span>tok/s</span></div></div>
+          <div><div class="metric-label">AVG. LATENCY</div><div class="metric-figure secondary" id="latencyRate">42<span>ms</span></div></div>
+        </div>
+        <canvas id="signalCanvas" aria-label="吞吐与延迟波形图"></canvas>
+        <div class="legend-row"><span><i class="legend-dot white"></i> TOKEN RATE</span><span><i class="legend-dot pink"></i> AGENT LOAD</span><span>± 04.02%</span></div>
+      </article>
+      <article class="telemetry-panel insight-panel">
+        <header class="telemetry-head"><span><i class="panel-index">04</i> NODE INSPECTOR</span><span class="telemetry-head-sub">READ ONLY <span class="tiny-chevron">⌗</span></span></header>
+        <div class="inspector-content" id="inspectorContent">
+          <div class="inspector-headline"><span id="inspectorType">RUNTIME / AGENT</span><span class="inspector-status"><i></i><span id="inspectorState">ACTIVE</span></span></div>
+          <h3 id="inspectorName">Planner Agent <span>↗</span></h3>
+          <div class="inspector-data-grid"><div><span>NODE ID</span><strong id="inspectorId">AG-001</strong></div><div><span>MODEL ROUTE</span><strong id="inspectorRoute">Gateway / LLM</strong></div><div><span>LAST EVENT</span><strong id="inspectorEvent">task.dispatched</strong></div><div><span>ELAPSED</span><strong id="inspectorElapsed">12.8 s</strong></div></div>
+          <div class="inspector-footnote"><span class="tiny-cross">✳</span> 点击网络节点查看对应 Agent / Skill / Tool 的事件状态。</div>
+        </div>
+      </article>
+    </section>
+    <footer class="main-footer"><span>PARTME AGENT FABRIC <b>© 2026</b></span><span>VISUAL RUNTIME CONCEPT / DEMO DATA ONLY</span><span>PAAS <span class="footer-mid">—</span> SAAS <span class="footer-mid">—</span> BUDDY <span class="footer-mid">—</span> TINYCLAW</span></footer>
+  </main>
+  <div id="toast" role="status" aria-live="polite" class="toast"></div>
+  <audio id="bgMusic" preload="auto" loop src="./assets/partme-ambient-40s.mp3"></audio></audio>
+  <audio id="bgMusicPulse" preload="none" loop src="./assets/partme-pulse-40s.mp3"></audio>
+  <script src="./app.js"></script>
+  <script src="./audio.js"></script>
+</body>
+</html>
