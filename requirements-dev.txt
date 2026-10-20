@@ -1,0 +1,4 @@
+# Audio generation and browser verification; runtime needs only a static server.
+numpy==2.5.4
+scipy==1.18.1
+playwright==1.64.0

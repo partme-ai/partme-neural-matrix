@@ -1,4 +1,4 @@
-﻿# Generated / temporary files
+# Generated / temporary files
 media/.incoming/
 .DS_Store
 Thumbs.db
@@ -6,3 +6,7 @@ __pycache__/
 *.pyc
 .venv/
 node_modules/
+
+# Audio intermediate files and generated standalone bundle
+src/assets/*.wav
+partme-neural-matrix-v3.html
