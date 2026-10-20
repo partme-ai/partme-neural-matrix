@@ -18,7 +18,7 @@
     {
       "name": "40s showcase autoplay",
       "passed": true,
-      "detail": 1.1099999999999999
+      "detail": 1.0332440000000003
     },
     {
       "name": "Corporate navy + icy-blue tokens",
@@ -50,7 +50,7 @@
       "name": "Live 40s seamless time wrap",
       "passed": true,
       "detail": {
-        "showTime": 0.306699999999999,
+        "showTime": 0.2199999999999957,
         "loops": 1
       }
     },
@@ -72,7 +72,7 @@
         "enabled": true,
         "score": "ambient",
         "paused": false,
-        "position": 1.225455,
+        "position": 0.627563,
         "volume": 0.71
       }
     },
@@ -83,7 +83,7 @@
         "enabled": true,
         "score": "pulse",
         "paused": false,
-        "position": 2.492457,
+        "position": 1.065954,
         "volume": 0.84
       }
     },
@@ -94,7 +94,7 @@
         "enabled": true,
         "score": "ambient",
         "paused": false,
-        "position": 3.480821,
+        "position": 1.411604,
         "volume": 0.71
       }
     },

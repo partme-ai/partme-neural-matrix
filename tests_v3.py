@@ -2,6 +2,8 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 import json
+import os
+import shutil
 ROOT=Path(__file__).resolve().parent
 OUT=ROOT/'verification';OUT.mkdir(exist_ok=True)
 checks=[]
@@ -9,8 +11,14 @@ def record(name,test,detail=None):
  checks.append({'name':name,'passed':bool(test),'detail':detail})
  print('PASS' if test else 'FAIL',name,detail if detail is not None else '')
 with sync_playwright() as p:
- b=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox','--disable-dev-shm-usage'])
- pg=b.new_page(viewport={'width':1600,'height':1000},device_scale_factor=1)
+ executable = os.environ.get('CHROMIUM_EXECUTABLE')
+ chrome = Path('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome')
+ if not executable and chrome.exists():
+  executable = str(chrome)
+ if not executable:
+  executable = shutil.which('chromium') or shutil.which('chromium-browser')
+ b=p.chromium.launch(headless=True,executable_path=executable,args=['--no-sandbox','--disable-dev-shm-usage'])
+ pg=b.new_page(viewport={'width':1280,'height':1024},device_scale_factor=1)
  errors=[];pg.on('pageerror',lambda e:errors.append(str(e)))
  pg.set_content((ROOT/'partme-neural-matrix-v3.html').read_text(),wait_until='load')
  pg.wait_for_function('Boolean(window.PartmeNeuralMatrix) && Boolean(window.PartmeAudio)')
@@ -20,7 +28,7 @@ with sync_playwright() as p:
  record('40s showcase autoplay',st['playbackMode']=='showcase' and st['playing'] and st['showTime']>.15,st['showTime'])
  palette=pg.evaluate('({bg:getComputedStyle(document.body).backgroundColor,accent:getComputedStyle(document.documentElement).getPropertyValue("--pink").trim()})')
  record('Corporate navy + icy-blue tokens',palette['bg']=='rgb(3, 14, 32)' and palette['accent']=='#73d2ff',palette)
- pg.evaluate('PartmeNeuralMatrix.renderAt(10)');pg.screenshot(path=str(OUT/'bluewhite-desktop-1600x1000.png'))
+ pg.evaluate('PartmeNeuralMatrix.renderAt(10)');pg.screenshot(path=str(OUT/'homepage-desktop-1280x1024.png'))
  angle=pg.evaluate('(()=>{PartmeNeuralMatrix.renderAt(1);const x=PartmeNeuralMatrix.getState().ringAngles;PartmeNeuralMatrix.renderAt(5);const y=PartmeNeuralMatrix.getState().ringAngles;return {delta:Math.abs(x.main-y.main),reverse:x.secondary!==y.secondary}})()')
  record('Central rotating ring moves both ways',angle['delta']>.4 and angle['reverse'],angle)
  pg.evaluate('PartmeNeuralMatrix.renderAt(20)')
@@ -49,13 +57,13 @@ with sync_playwright() as p:
  pg.locator('#audioBtn').click()
  record('Mute sound',not pg.evaluate('PartmeAudio.getState().enabled'))
  record('No JavaScript exceptions',len(errors)==0,errors)
- mobile=b.new_page(viewport={'width':390,'height':844},device_scale_factor=1)
+ mobile=b.new_page(viewport={'width':390,'height':884},device_scale_factor=1)
  mobile.on('pageerror',lambda e:errors.append('Mobile: '+str(e)))
  mobile.set_content((ROOT/'partme-neural-matrix-v3.html').read_text(),wait_until='load')
  mobile.wait_for_timeout(450)
  info=mobile.evaluate('({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,quality:PartmeNeuralMatrix.getState().quality})')
  record('Mobile 390px / Lite quality / no horizontal overflow',info['scrollWidth']==390 and info['quality']=='lite',info)
- mobile.screenshot(path=str(OUT/'bluewhite-mobile-390x844.png'),full_page=True)
+ mobile.screenshot(path=str(OUT/'homepage-mobile-390x884.png'),full_page=True)
  record('No mobile JS exceptions',len(errors)==0,errors)
  b.close()
 report={'total':len(checks),'passed':sum(c['passed'] for c in checks),'failed':sum(not c['passed'] for c in checks),'checks':checks}
